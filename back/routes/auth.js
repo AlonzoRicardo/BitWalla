@@ -45,6 +45,7 @@ router.post('/signup', (req, res, next) => {
       username,
       password: hashPass
     }).save();
+
   })
   .then( savedUser => login(req, savedUser)) // Login the user using passport
   .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON
