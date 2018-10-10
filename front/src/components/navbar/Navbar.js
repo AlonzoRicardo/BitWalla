@@ -22,7 +22,14 @@ class Navbar extends Component {
             return (
 
                 <nav className="navbar navbar-dark bg-dark">
-                    <h2>Welcome, <Link to={`/profile/${this.state.loggedInUser.username}`}>{this.state.loggedInUser.username}</Link></h2>
+                    <h2>
+                        <Link to='/main'>
+                            BitWalla
+                        </Link>
+                        <Link
+                            to={`/profile/${this.state.loggedInUser.username}`}>{this.state.loggedInUser.username}
+                        </Link>
+                    </h2>
                     <Link to='/profile/new'>+</Link>
                     <a onClick={this.handleLogout}>Logout</a>
                 </nav>

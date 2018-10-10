@@ -6,8 +6,9 @@ const Product = require('../models/Products');
 const uploadCloud = require('../config/cloudinary.js');
 
 //MAYBE NOT NEEDED
-router.get('/new', /* ensureLoggedIn(), */(req, res, next) => {
-
+router.get('/main', /* ensureLoggedIn(), */(req, res, next) => {
+    Product.find()
+    .then(prods => res.json(prods))
 });
 
 //CREATE NEW PRODUCT
@@ -26,6 +27,7 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
         photo
     }).save()
         .then((response) => {
+            console.log(response);
             User.findByIdAndUpdate(req.user._id, { $push: { items: response._id } })
             .then((user) => { res.json(user) })
         }).catch(e => next(e))

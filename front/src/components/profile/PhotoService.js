@@ -5,7 +5,11 @@ export default class PhotoService {
     this.service = axios.create({
       baseURL: 'http://localhost:3000/products',
       withCredentials: true
-      
+    });
+
+    this.service2 = axios.create({
+      baseURL: 'http://localhost:3000/profile',
+      withCredentials: true
     });
   }
 
@@ -15,7 +19,7 @@ export default class PhotoService {
     formData.append("productName", productName)
     formData.append("productDescription", productDescription)
     formData.append("productPrice", productPrice)
-    
+
     console.log('DEBUG formData', formData.get("photo"));
     
     return this.service
@@ -27,6 +31,15 @@ export default class PhotoService {
       .then(res => res.data)
   }
 
+  getProfileProducts = (username) => {
+    return this.service2.get(`/${username}`)
+    .then(response => response.data)
+  }
+
+  getAllProducts = () => {
+    return this.service.get('/main')
+    .then(response => response.data)
+  }
 }
 
 

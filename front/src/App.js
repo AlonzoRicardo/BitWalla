@@ -10,6 +10,8 @@ import Login from './components/auth/Login';
 import AuthService from './components/auth/AuthService';
 import Profile from './components/profile/Profile'
 import New from './components/profile/New'
+import PhotoService from './components/profile/PhotoService'
+import MainPage from './components/main/MainPage'
 
 class App extends Component {
 
@@ -17,36 +19,44 @@ class App extends Component {
     super(props)
     this.state = { loggedInUser: null };
     this.service = new AuthService();
+    this.photoService = new PhotoService()
   }
 
+  
   getTheUser = (userObj) => {
     this.setState({
       loggedInUser: userObj
     })
   }
-
+  
   logout = () => {
     this.service.logout()
-      .then(() => {
-        this.setState({ loggedInUser: null });
-      })
+    .then(() => {
+      this.setState({ loggedInUser: null });
+    })
   }
-
+  
   fetchUser() {
     if (this.state.loggedInUser === null) {
       this.service.loggedin()
-        .then(response => {
-          this.setState({
-            loggedInUser: response
-          })
+      .then(response => {
+        this.setState({
+          loggedInUser: response
         })
-        .catch(err => {
-          this.setState({
-            loggedInUser: false
-          })
+      })
+      .catch(err => {
+        this.setState({
+          loggedInUser: false
         })
+      })
     }
   }
+
+ /* fetchImages = () => {
+    this.photoService.getProfileProducts()
+    console.log(this.state.loggedInUser);
+    console.log('entra')
+  } */
 
   render() {
     this.fetchUser()
@@ -56,8 +66,15 @@ class App extends Component {
         <div className="App">
           <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           <Switch>
-            <Route exact path={`/profile/new`} render={() => <New userInSession={this.state.loggedInUser}/>} />
-            <Route exact path={`/profile/${this.state.loggedInUser.username}`} render={() => <Profile userInSession={this.state.loggedInUser}/>} />
+            <Route exact path={`/profile/new`} render={() => <New userInSession={this.state.loggedInUser} />} />
+            
+            <Route exact path={`/main`} render={() =><MainPage />}/>
+
+            <Route exact path={`/profile/${this.state.loggedInUser.username}`}
+              render={() => <Profile
+                userInSession={this.state.loggedInUser}
+              />} />
+          
           </Switch>
         </div>
       );
@@ -66,8 +83,6 @@ class App extends Component {
         <div className="App">
           <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           <header className="App-header">
-
-
             <Switch>
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
               <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
