@@ -55,8 +55,6 @@ class App extends Component {
       return (
         <div className="App">
           <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-
-          {/* <Contents></Contents> */}
           <Switch>
             <Route exact path={`/profile/new`} render={() => <New userInSession={this.state.loggedInUser}/>} />
             <Route exact path={`/profile/${this.state.loggedInUser.username}`} render={() => <Profile userInSession={this.state.loggedInUser}/>} />
