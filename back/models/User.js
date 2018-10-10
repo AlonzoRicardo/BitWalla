@@ -5,7 +5,7 @@ const userSchema = new Schema({
   username: String,
   password: String,
   location: String,
-  items: [{type: Schema.Types.ObjectId, ref: "Products" }]
+  items: [{type: Schema.Types.ObjectId, ref: "Product" }]
 }, {
   timestamps: {
     createdAt: 'created_at',

@@ -47,6 +47,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 
+/* app.use(function (req, res) {
+  res.setHeader('Content-Type', 'text/plain')
+  res.write('you posted:\n')
+  res.end(JSON.stringify(req.body, null, 2))
+}) */
+
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
@@ -85,9 +91,11 @@ app.use((req, res, next) => {
 
 const authRouter = require('./routes/auth');
 const productsRouter = require('./routes/products');
+const profileRouter = require('./routes/profile')
 //const genericCrud = require('./routes/genericCRUD');
 app.use('/api/auth', authRouter);
 app.use('/products', productsRouter)
+app.use('/profile', profileRouter)
 //app.use('/api/news', genericCrud(require('./models/News')));
 //app.use('/api/user', genericCrud(require('./models/User')));
 

@@ -21,9 +21,9 @@ class Navbar extends Component {
         if (this.state.loggedInUser) {
             return (
 
-
                 <nav className="navbar navbar-dark bg-dark">
-                    <h2>Welcome, {this.state.loggedInUser.username}</h2>
+                    <h2>Welcome, <Link to={`/profile/${this.state.loggedInUser.username}`}>{this.state.loggedInUser.username}</Link></h2>
+                    <Link to='/profile/new'>+</Link>
                     <a onClick={this.handleLogout}>Logout</a>
                 </nav>
             )

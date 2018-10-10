@@ -1,4 +1,3 @@
-// auth/auth-service.js
 import axios from 'axios';
 
 class AuthService {

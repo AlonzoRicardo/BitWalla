@@ -20,3 +20,30 @@
  .NavbarNewGhest * {
   margin: 0 5px;
  }
+
+ .profileContent{
+  min-height: 100vh;
+   color: black;
+   text-decoration: none;
+ }
+
+ .profileTop {
+  min-height: 17vh;
+    padding: 30px;
+    margin: 2px;
+ }
+
+ .profileTop img {
+   border-radius: 50px;
+   float: right;
+    max-width: 80px;
+    max-height: 80px;
+ }
+
+ .profileTop h1 {
+  float: left;
+}
+
+.profileItems {
+  
+}
