@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import { Switch, Route } from 'react-router-dom';
-
 // import ProjectList from './components/projects/ProjectList';
 import Navbar from './components/navbar/Navbar';
 // import ProjectDetails from './components/projects/ProjectDetails';
@@ -22,41 +21,35 @@ class App extends Component {
     this.photoService = new PhotoService()
   }
 
-  
+
   getTheUser = (userObj) => {
     this.setState({
       loggedInUser: userObj
     })
   }
-  
+
   logout = () => {
     this.service.logout()
-    .then(() => {
-      this.setState({ loggedInUser: null });
-    })
+      .then(() => {
+        this.setState({ loggedInUser: null });
+      })
   }
-  
+
   fetchUser() {
     if (this.state.loggedInUser === null) {
       this.service.loggedin()
-      .then(response => {
-        this.setState({
-          loggedInUser: response
+        .then(response => {
+          this.setState({
+            loggedInUser: response
+          })
         })
-      })
-      .catch(err => {
-        this.setState({
-          loggedInUser: false
+        .catch(err => {
+          this.setState({
+            loggedInUser: false
+          })
         })
-      })
     }
   }
-
- /* fetchImages = () => {
-    this.photoService.getProfileProducts()
-    console.log(this.state.loggedInUser);
-    console.log('entra')
-  } */
 
   render() {
     this.fetchUser()
@@ -67,14 +60,13 @@ class App extends Component {
           <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           <Switch>
             <Route exact path={`/profile/new`} render={() => <New userInSession={this.state.loggedInUser} />} />
-            
-            <Route exact path={`/main`} render={() =><MainPage />}/>
+
+            <Route exact path={`/main`} render={() => <MainPage />} />
 
             <Route exact path={`/profile/${this.state.loggedInUser.username}`}
               render={() => <Profile
                 userInSession={this.state.loggedInUser}
               />} />
-          
           </Switch>
         </div>
       );
@@ -84,6 +76,7 @@ class App extends Component {
           <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           <header className="App-header">
             <Switch>
+              <Route exact path={`/main`} render={() => <MainPage />} />
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
               <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
             </Switch>

@@ -4,7 +4,11 @@ const Schema   = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
   password: String,
-  location: String,
+  contact: Number,
+  location: {
+    country: String,
+    city: String
+  },
   items: [{type: Schema.Types.ObjectId, ref: "Product" }]
 }, {
   timestamps: {

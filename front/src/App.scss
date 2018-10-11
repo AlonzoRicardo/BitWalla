@@ -21,6 +21,20 @@
   margin: 0 5px;
  }
 
+@mixin try ($color) {
+  transition:all 0.8s;
+  &:active {
+    color: $color;
+   }
+}
+
+ .brand {
+   $color: rgb(54, 54, 65);
+  
+   @include try($color);      
+   color: white; 
+ }
+
  .profileContent{
   min-height: 100vh;
    color: black;

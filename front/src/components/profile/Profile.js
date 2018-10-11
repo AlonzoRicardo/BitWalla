@@ -15,6 +15,7 @@ class Profile extends React.Component {
         .then((res) => {
             this.setState({ items: res.items })
             console.log(this.state.items);
+            console.log(this.props.userInSession.location.city)
         })
     }
 
@@ -27,7 +28,8 @@ render() {
                 <img src="https://www.joispot.com/assets/img/user.jpg" className='img-circle' alt="some" />
                 <div style={{ float: 'left', textAlign: 'start' }}>
                     <h1>{this.props.userInSession.username}</h1>
-                    <p>kokoland</p>
+                    <p>{this.props.userInSession.location.city} <br/> {this.props.userInSession.location.country}</p>
+                    
                 </div>
             </div>
 

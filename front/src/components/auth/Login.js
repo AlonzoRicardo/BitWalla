@@ -10,6 +10,7 @@ class Login extends Component {
     this.service = new AuthService();
   }
 
+
   handleFormSubmit = (event) => {
     event.preventDefault();
     const username = this.state.username;
@@ -35,13 +36,14 @@ class Login extends Component {
       })
   }
 
+
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   }
 
-  render() {
 
+  render() {
     return (<div>
       <h3>Please, login to our site</h3>
 
@@ -56,7 +58,9 @@ class Login extends Component {
           <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
         </fieldset>
 
+
         <input type="submit" value="Login" />
+
       </form>
 
       <h1>{this.state.error ? 'Error' : ''}</h1>

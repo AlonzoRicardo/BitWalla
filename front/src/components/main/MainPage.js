@@ -13,8 +13,10 @@ class MainPage extends React.Component {
     componentDidMount() {
         this.photoService.getAllProducts()
             .then((res) => {
+                console.log(res, 'here');
                 this.setState({ items: res })
             })
+            
     }
 
     render() {
@@ -31,6 +33,7 @@ class MainPage extends React.Component {
                                             <h5 className='card-title'>{e.productName}</h5>
                                             <p className='card-text'>{e.productDescription}</p>
                                             <p>{e.productPrice}</p>
+                                            <p>{e.ownerName}</p>
                                         </div>
                                         <hr />
                                     </div>

@@ -14,12 +14,13 @@ router.get('/main', /* ensureLoggedIn(), */(req, res, next) => {
 //CREATE NEW PRODUCT
 router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
     console.log("NEW PRODUCT ENTERS");
-
+    
     let itemOwner = req.user._id
     let { productName, productDescription, productPrice } = req.body;
     let photo = req.file.secure_url
 
     return new Product({
+        ownerName: req.user.username,
         itemOwner,
         productName,
         productDescription,

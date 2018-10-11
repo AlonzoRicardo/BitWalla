@@ -22,7 +22,7 @@ class Navbar extends Component {
             return (
 
                 <nav className="navbar navbar-dark bg-dark">
-                    <h2>
+                    <h2 className='brand'>
                         <Link to='/main'>
                             BitWalla
                         </Link>
@@ -38,7 +38,7 @@ class Navbar extends Component {
             return (
                 <div>
                     <nav className="navbar navbar-dark bg-dark">
-                        <h2>BitWalla</h2>
+                        <h2 className='brand'>BitWalla</h2>
                         <div className='NavbarNewGhest'>
                             <Link to='/signup'>Signup</Link>
                             <Link to='/login'>Login</Link>
