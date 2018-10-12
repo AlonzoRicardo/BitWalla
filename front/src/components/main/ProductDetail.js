@@ -10,7 +10,9 @@ class ProductDetail extends React.Component {
         this.service = new DetailsService();
     }
 
-    componentDidMount() {
+   
+
+    handleItem() {
         this.service.getSingleProduct(this.id)
             .then((res) => {
                 this.setState({ item: res });
@@ -18,6 +20,8 @@ class ProductDetail extends React.Component {
     }
 
     render() {
+        this.handleItem()
+        
         return (
             <div className='productDetails' >
                 {

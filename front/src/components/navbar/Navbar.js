@@ -30,8 +30,20 @@ class Navbar extends Component {
                             to={`/profile/${this.state.loggedInUser.username}`}>{this.state.loggedInUser.username}
                         </Link>
                     </h2>
-                    
-                    <a onClick={this.handleLogout}>Logout</a>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            +
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href='/main' className='dropdown-item' onClick={this.handleLogout}>Logout</a>
+                            <button class="dropdown-item" type="button">Action</button>
+                            <button class="dropdown-item" type="button">Another action</button>
+                            <button class="dropdown-item" type="button">Something else here</button>
+                        </div>
+                    </div>
+
+                    {/* <a href='/main' onClick={this.handleLogout}>Logout</a> */}
                 </nav>
             )
         } else {

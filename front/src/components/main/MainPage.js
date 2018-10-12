@@ -15,34 +15,50 @@ class MainPage extends React.Component {
         return this.setState({ search: event.target.value });
     };
 
+
+
     render() {
-        console.log(this.props);
-        
-          /* let filtered = this.props.items.filter(item => {
-                return (
-                  item.productName.toLowerCase().indexOf(this.state.search) !== -1
-                )
-              })  */
-        
-        
+        let filtered = this.props.items && this.props.items.filter(item => {
+
+            return (
+
+                item.productName.toLowerCase().indexOf(this.state.search) !== -1
+            )
+        })
+
+
         return (
 
             <div className='profileContent'>
-                <input
-                    class="input"
-                    value={this.state.search.toLowerCase()}
-                    onChange={this.updateSearch}
-                    type="text"
-                    placeholder="Find a Product"
-                />
+                <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                        <button className="btn btn-outline-secondary dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
+                        <div className="dropdown-menu ">
+                            <p className="dropdown-item" href="#">Chemicals</p>
+                            <div role="separator" className="dropdown-divider"></div>
+                            <p className="dropdown-item" href="#">Drugs</p>
+                            <div role="separator" className="dropdown-divider"></div>
+                            <p className="dropdown-item" href="#">Weapons</p>
+                            <div role="separator" className="dropdown-divider"></div>
+                            <p className="dropdown-item" href="#">Malicious Software</p>
+                            <div role="separator" className="dropdown-divider"></div>
+                            <p className="dropdown-item" href="#">Services</p>
+                            
+                        </div>
+                    </div>
+                    <input type="text" className="form-control" value={this.state.search.toLowerCase()}
+                    onChange={this.updateSearch} aria-label="Text input with dropdown button" />
+                </div>
+
+
                 <div className='profileItems'>
                     <div className='items'>
                         {
                             this.props.items &&
-                            this.props.items.map(e => {
+                            filtered.map(e => {
                                 return (
-                                    <div className='card text-left'>
-                                        <Link to={`/product/id/` + e._id} key={e._id}><img className="card-img-top" src={`${e.photo}`} alt="" /></Link>
+                                    <div className='card text-left' key={e._id}>
+                                        <Link to={`/product/id/` + e._id} ><img className="card-img-top" src={`${e.photo}`} alt="" /></Link>
                                         <div className='card-body'>
                                             <p className='text-right'>{e.ownerName}</p>
                                             <h5 className='card-title'>{e.productName}</h5>
@@ -56,8 +72,7 @@ class MainPage extends React.Component {
                     </div>
 
                 </div>
-            </div>
-        );
+            </div>);
     }
 }
 

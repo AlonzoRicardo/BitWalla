@@ -1,0 +1,32 @@
+.msg{
+    padding: 5px;
+    margin:5px;
+    display:block;
+}
+.msg.me{
+    text-align: right;
+}
+.msg.server{
+    text-align: left;
+}
+
+.msg.me .wrap{
+    background:rgb(119, 119, 119);
+    color:white;
+}
+
+.msg.server .wrap{
+    background:grey;
+    color:white;
+}
+
+.msg .wrap{
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.private{
+    background: rgb(50, 50, 56);
+    height: 812px;
+}

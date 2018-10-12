@@ -14,6 +14,9 @@ import MainPage from './components/main/MainPage'
 import ProductDetail from './components/main/ProductDetail'
 import DetailsService from './components/main/DetailsService'
 
+import ChatRoom from './components/chat/ChatRoom'
+
+
 class App extends Component {
 
   constructor(props) {
@@ -69,6 +72,7 @@ class App extends Component {
         <div className="App">
           <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           <Switch>
+
             <Route exact path={`/profile/new`} render={() => <New userInSession={this.state.loggedInUser} />} />
 
             <Route exact path={`/main`} render={(props) => <MainPage a={props} items={this.state.items} />} />
@@ -79,6 +83,8 @@ class App extends Component {
               render={() => <Profile
                 userInSession={this.state.loggedInUser}
               />} />
+
+            <Route exact path={`/chat`} render={() => <ChatRoom userInSession={this.state.loggedInUser} />} />
           </Switch>
           <Link to='/profile/new' className='add'>+</Link>
         </div>
