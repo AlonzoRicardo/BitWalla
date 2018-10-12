@@ -21,6 +21,10 @@
   margin: 0 5px;
  }
 
+ .productDetails{
+   color: #282c34;
+ }
+
 @mixin try ($color) {
   transition:all 0.8s;
   &:active {
@@ -33,6 +37,14 @@
   
    @include try($color);      
    color: white; 
+ }
+
+ .add {
+  width: 20px;
+  height: 5px;
+  position: fixed;
+  top: 0px;
+  right: 0px;
  }
 
  .profileContent{

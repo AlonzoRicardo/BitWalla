@@ -30,7 +30,7 @@ class Navbar extends Component {
                             to={`/profile/${this.state.loggedInUser.username}`}>{this.state.loggedInUser.username}
                         </Link>
                     </h2>
-                    <Link to='/profile/new'>+</Link>
+                    
                     <a onClick={this.handleLogout}>Logout</a>
                 </nav>
             )

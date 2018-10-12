@@ -15,17 +15,14 @@ export default class New extends Component {
     }
 
     handleChange(e) {
-        console.log('handleChange');
-        console.log('DEBUG e.target.files[0]', e.target.files[0]);
         this.setState({
           photo: e.target.files[0]
         })
       }
     
     handleSubmit(e) {
-        console.log(this.state);
         e.preventDefault()
-        let { productName, productDescription, productPrice, error } = this.state;
+        let { productName, productDescription, productPrice} = this.state;
         if (productName === '') return this.setState({ error: 'Empty product name' });
         if (productDescription === '') return this.setState({ error: 'Empty product Description' });
         if (productPrice === 0) return this.setState({ error: 'Empty product Price' });

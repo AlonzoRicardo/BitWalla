@@ -11,6 +11,13 @@ router.get('/main', /* ensureLoggedIn(), */(req, res, next) => {
     .then(prods => res.json(prods))
 });
 
+//GET SINGLE 
+router.get('/id/:id', /* ensureLoggedIn(), */(req, res, next) => {
+    let id = req.params.id
+     Product.findById(id)
+    .then(prod => res.json(prod))
+});
+
 //CREATE NEW PRODUCT
 router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
     console.log("NEW PRODUCT ENTERS");
