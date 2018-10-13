@@ -46,7 +46,7 @@ class Signup extends Component {
       <label>Country:</label>
       <select name="country" form='signup' value={this.state.country} onChange={e => this.handleChange(e)}>
         {
-          this.allCountries.map(e => <option value={e} >{e}</option>) 
+          this.allCountries.map((e,i) => <option key={i+e} value={e} >{e}</option>) 
         }
       </select>
     </fieldset>
@@ -57,7 +57,7 @@ class Signup extends Component {
         {
           this.state.country 
           ? 
-          countries[this.state.country].map(e => <option value={e} >{e}</option>)
+          countries[this.state.country].map((e,i) =>  <option key={i+e} value={e} >{e}</option>)
           :
           console.log('err')
         }

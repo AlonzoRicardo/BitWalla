@@ -26,20 +26,19 @@ class Navbar extends Component {
                         <Link to='/main'>
                             BitWalla
                         </Link>
-                        <Link
-                            to={`/profile/${this.state.loggedInUser.username}`}>{this.state.loggedInUser.username}
-                        </Link>
+                    <br/>
+                    <p className='btcPrice'> BTC/EUR {this.props.btcPrice}</p>
                     </h2>
-
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            +
+                    
+                    <div className="btn-group">
+                        <button type="button" className="btn btn-primary dropdown-toggle downArrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right">
+                        <div className="dropdown-menu dropdown-menu-right">
+                            <Link to={`/profile/${this.state.loggedInUser.username}`}><button className="dropdown-item" type="button">Profile</button></Link>
+                            <Link to={`/wallet/info`}><button className="dropdown-item" type="button">Wallet</button></Link>
+                            <Link to='/profile/new'><button className="dropdown-item" type="button">Add Product</button></Link>
+                            <button className="dropdown-item" type="button">Inbox</button>
                             <a href='/main' className='dropdown-item' onClick={this.handleLogout}>Logout</a>
-                            <button class="dropdown-item" type="button">Action</button>
-                            <button class="dropdown-item" type="button">Another action</button>
-                            <button class="dropdown-item" type="button">Something else here</button>
                         </div>
                     </div>
 

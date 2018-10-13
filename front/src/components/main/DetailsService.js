@@ -12,6 +12,8 @@ export default class DetailsService {
     return this.service.get(`/id/${id}`)
     .then(response => response.data)
   }
+
+  
 }
 
 

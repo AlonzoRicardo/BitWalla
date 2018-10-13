@@ -1,6 +1,5 @@
 import React from 'react';
 import io from 'socket.io-client';
-
 import './chat.scss';
 
 export default class ChatRoom extends React.Component {
@@ -37,10 +36,11 @@ export default class ChatRoom extends React.Component {
         this.socket.emit('message', { msg, timestamp: Date.now() })
     }
 
+
     render() {
         let { messages, input } = this.state;
         return (
-            <div className='private' style={{ border: '1px solid green', padding: '10px' }} onKeyDown={e => e.keyCode == 13 ? this.submitChat() : null}>
+            <div className='private' style={{ border: '1px solid green', padding: '10px' }} onKeyDown={e => e.keyCode === 13 ? this.submitChat() : null}>
                 <div className="messages">
                     {messages.map((e, i) => <div className={"msg " + e.type} key={i}><div className="wrap">{e.msg}</div></div>)}
                 </div>

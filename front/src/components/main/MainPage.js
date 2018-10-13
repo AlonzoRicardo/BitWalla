@@ -7,7 +7,8 @@ class MainPage extends React.Component {
         this.state = {
             items: [],
             selected: null,
-            search: ''
+            search: '',
+            btc_usd: 0
         }
     }
 
@@ -16,19 +17,15 @@ class MainPage extends React.Component {
     };
 
 
-
-    render() {
+    render() {        
         let filtered = this.props.items && this.props.items.filter(item => {
-
             return (
-
                 item.productName.toLowerCase().indexOf(this.state.search) !== -1
             )
         })
 
-
+        
         return (
-
             <div className='profileContent'>
                 <div className="input-group mb-3">
                     <div className="input-group-prepend">
@@ -62,7 +59,8 @@ class MainPage extends React.Component {
                                         <div className='card-body'>
                                             <p className='text-right'>{e.ownerName}</p>
                                             <h5 className='card-title'>{e.productName}</h5>
-                                            <p>{e.productPrice}</p>
+                                            <p>€{e.productPrice}</p>
+                                            <p>Ƀ{e.productPrice / this.props.btcPrice}</p>
                                         </div>
                                         <hr />
                                     </div>

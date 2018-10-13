@@ -12,6 +12,10 @@
   color: white;
 }
 
+.btcPrice{
+  font-size: 10px;
+}
+
 .App-link {
   color: #3b626d;
 }
@@ -36,18 +40,54 @@
 }
 
  .brand {
+   text-align: start;
    $color: rgb(54, 54, 65);
-  
+   font-size: 25px;
+   margin-bottom: -0.5rem;
    @include try($color);      
    color: white; 
  }
 
- .add {
-  width: 20px;
-  height: 5px;
-  position: fixed;
-  top: 0px;
-  right: 0px;
+ .wallet {
+   color: #282c34;
+ }
+
+ .wallet input:focus {
+    outline-width: 0;
+ }
+
+ .wallet input {
+  border: none;
+}
+
+.wallet {
+  margin-top: 5vh;  
+}
+
+.wallet .btn {
+  background-color: rgb(51, 91, 131); /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.wallet .btn:hover {
+  background-color: RoyalBlue;
+}
+
+
+
+ .downArrow{
+  border: #282c34;
+  background: #282c34;
+ }
+
+ .downArrow:hover{
+  border: #3b626d;
+  background: #3b626d;
  }
 
  .profileContent{

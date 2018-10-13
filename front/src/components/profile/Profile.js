@@ -19,8 +19,6 @@ class Profile extends React.Component {
         })
     }
 
-
-
 render() {
     return (
         <div className='profileContent'>
@@ -41,9 +39,9 @@ render() {
                         :
                         <div className='card items'>
                             {
-                                this.state.items.map(e => { 
+                                this.state.items.map((e,i) => { 
                                     return (
-                                    <div>
+                                    <div key={i}>
                                         <img className="card-img-top" src={`${e.photo}`} alt=""/>
                                         <p>{e.productName}</p>
                                         <p>{e.productDescription}</p>

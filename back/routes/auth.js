@@ -1,18 +1,20 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const passport = require('passport');
-
+//BTC generator
+var cmd = require('node-cmd');
+var QRCode = require('qrcode')
 
 const login = (req, user) => {
-  return new Promise((resolve,reject) => {
+  return new Promise((resolve, reject) => {
     req.login(user, err => {
       console.log('req.login ')
-      console.log(user)      
-      if(err) {
+      console.log(user)
+      if (err) {
         reject(new Error('Something went wrong'))
-      }else{
+      } else {
         resolve(user);
       }
     })
@@ -23,50 +25,94 @@ const login = (req, user) => {
 // SIGNUP
 router.post('/signup', (req, res, next) => {
 
-  const {username, password, phone, country, city} = req.body;
-  
-  console.log('username', username)
-  console.log('password', password)
-  console.log('phone', phone)
-  console.log('country', country)
-  console.log('city', city)
+  const { username, password, phone, country, city } = req.body;
+  //public
+  let publicKey = '';
+  //private 
+  let privateKey = '';
 
   
+
   // Check for non empty user or password
-  if (!username || !password){
+  if (!username || !password) {
     next(new Error('You must provide valid credentialssuuuk'));
   }
 
+  function getPub(pub) {
+    return new Promise((resolve, reject) => {
+      QRCode.toDataURL(pub, (err, url) => {
+        publicQR = url;
+        resolve(url)
+      })
+    })
+  }
+
+  function getPriv(priv) {
+    return new Promise((resolve, reject) => {
+      QRCode.toDataURL(priv, (err, url) => {
+        privateQR = url;
+        resolve(url)
+      })
+    })
+  }
+
+
   // Check if user exists in DB
   User.findOne({ username })
-  .then( foundUser => {
-    if (foundUser) throw new Error('Username already exists');
+    .then(foundUser => {
+      if (foundUser) throw new Error('Username already exists');
 
-    const salt     = bcrypt.genSaltSync(10);
-    const hashPass = bcrypt.hashSync(password, salt);
 
-    return new User({
-      username,
-      password: hashPass,
-      contact: phone,
-      location: {
-        country,
-        city
-      }
-    }).save();
+      const salt = bcrypt.genSaltSync(10);
+      const hashPass = bcrypt.hashSync(password, salt);
 
-  })
-  .then( savedUser => login(req, savedUser)) // Login the user using passport
-  .then( user => res.json({status: 'signup & login successfully', user})) // Answer JSON
-  .catch(e => next(e));
+
+      cmd.get(
+        'bitaddress singlewallet',
+        function (err, data, stderr) {
+          let arr = data.split('\n')
+          publicKey = arr[0].split(' ')[2]
+          privateKey = arr[1].split(' ')[6]
+
+          Promise.all([
+            getPub(publicKey),
+            getPriv(privateKey)
+          ])
+            .then(([pubQR, priQR]) => {
+              new User({
+                username,
+                password: hashPass,
+                contact: phone,
+                location: {
+                  country,
+                  city
+                },
+                wallet: {
+                  public: {
+                    publicKey,
+                    publicQR: pubQR
+                  },
+                  private: {
+                    privateKey,
+                    privateQR: priQR
+                  }
+                }
+              }).save()
+                .then(savedUser => login(req, savedUser)) // Login the user using passport
+                .then(user => res.json({ status: 'signup & login successfully', user })) // Answer JSON
+                .catch(e => next(e));
+            })
+        }
+      )
+    })
 });
 
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, theUser, failureDetails) => {
-    
+
     // Check for errors
-    if (err) next(new Error('Something went wrong')); 
+    if (err) next(new Error('Something went wrong'));
     if (!theUser) next(failureDetails)
 
     // Return user and logged in
@@ -76,18 +122,18 @@ router.post('/login', (req, res, next) => {
 });
 
 
-router.get('/currentuser', (req,res,next) => {
-  if(req.user){
+router.get('/currentuser', (req, res, next) => {
+  if (req.user) {
     res.status(200).json(req.user);
-  }else{
+  } else {
     next(new Error('Not logged in'))
   }
 })
 
 
-router.get('/logout', (req,res) => {
+router.get('/logout', (req, res) => {
   req.logout();
-  res.status(200).json({message:'logged out'})
+  res.status(200).json({ message: 'logged out' })
 });
 
 

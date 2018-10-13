@@ -9,6 +9,16 @@ const userSchema = new Schema({
     country: String,
     city: String
   },
+  wallet: {
+    public: {
+      publicKey: String,
+      publicQR: String
+    },
+    private: {
+      privateKey: String,
+      privateQR: String
+    }
+  },
   items: [{type: Schema.Types.ObjectId, ref: "Product" }]
 }, {
   timestamps: {
