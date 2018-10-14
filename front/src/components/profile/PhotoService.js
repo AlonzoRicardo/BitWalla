@@ -40,6 +40,11 @@ export default class PhotoService {
     return this.service.get('/main')
     .then(response => response.data)
   }
+
+  deleteProduct = (id) => {
+    return this.service.post(`/delete/${id}`)
+    .then(response => response.data)
+  }
 }
 
 

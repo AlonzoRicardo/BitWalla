@@ -1,4 +1,6 @@
 
+
+
 .header-container{
     margin-top:20px;    
 }
@@ -21,6 +23,8 @@
     left: 0;
     display: block;
 }
+
+
 
 .bg-dark {
     background-color: rgba(24,28,33,0.9) !important;
@@ -73,4 +77,8 @@
 }
 .nav-tabs .nav-link.active {
     border-bottom-color: #fff;
+}
+
+.close {
+    float: left;
 }

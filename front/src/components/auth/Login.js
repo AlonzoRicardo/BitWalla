@@ -1,6 +1,7 @@
 // auth/Signup.js
 import React, { Component } from 'react';
 import AuthService from './AuthService'
+import './auth.scss'
 
 class Login extends Component {
   constructor(props) {
@@ -43,21 +44,22 @@ class Login extends Component {
 
   render() {
     return (<div className='loginForm'>
-      <h3>Please, login to our site</h3>
+      <h3>Enter Your Credentials</h3>
 
-      <form onSubmit={this.handleFormSubmit}>
-        <fieldset>
-          <label>Username:</label>
-          <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-        </fieldset>
+      <form onSubmit={this.handleFormSubmit} className='signup'>
 
-        <fieldset>
-          <label>Password:</label>
-          <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-        </fieldset>
+        <div className="form-group">
+          <label >Username: </label>
+          <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} className="form-control"  aria-describedby="emailHelp" placeholder="Type your username" />
+        </div>
 
+        <div className="form-group">
+          <label >Password: </label>
+          <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} className="form-control"  placeholder="Type your password" />
+          <small id="emailHelp" className="form-text text-muted">We'll never share your password with anyone else.</small>
+        </div>
 
-        <input type="submit" value="Login" />
+        <input type="submit" className="btn btn-primary" value="Login" />
 
       </form>
 

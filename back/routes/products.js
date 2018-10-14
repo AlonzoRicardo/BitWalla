@@ -41,4 +41,11 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
         }).catch(e => next(e))
 })
 
+router.post('/delete/:id', (req,res,next) => {
+    console.log('entra en delete');
+    let id = req.params.id
+    Product.findByIdAndRemove(id)
+    .then((prod) => res.json(prod))
+})
+
 module.exports = router;
