@@ -64,6 +64,12 @@
   margin-top: 5vh;  
 }
 
+.walletBalance {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .wallet .btn {
   background-color: rgb(51, 91, 131); /* Blue background */
   border: none; /* Remove borders */
