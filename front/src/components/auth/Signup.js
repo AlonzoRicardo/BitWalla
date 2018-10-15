@@ -2,12 +2,13 @@
 import React, { Component } from 'react';
 import AuthService from './AuthService'
 import countries from './countries.min.json'
+import { Redirect } from 'react-router-dom';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
     this.allCountries = Object.keys(countries)
-    this.state = { username: '', password: '', phone: 0, country: '', city: '' };
+    this.state = { username: '', password: '', phone: 0, country: '', city: '', redirect: false, error: true};
     this.service = new AuthService();
   }
 
@@ -15,17 +16,20 @@ class Signup extends Component {
     event.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
-    const { phone, country, city } = this.state
+    const { phone, country, city} = this.state
 
     this.service.signup(username, password, phone, country, city)
       .then(response => {
         this.setState({
           username: "",
           password: "",
+          error: false
         });
         this.props.getUser(response.user)
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        console.log(error) 
+      })
   }
 
   handleChange = (event) => {
@@ -33,10 +37,23 @@ class Signup extends Component {
     this.setState({ [name]: value })
   }
 
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/main' />
+    }
+  }
+
 
   render() {
     return (
       <div className='container loginForm'>
+        {!this.state.error && this.renderRedirect()}
         <h3>Welcome!, we have already created a new wallet for you</h3>
         <small className="form-text text-muted">We'll never share your credentials with anyone else.</small>
 
@@ -79,51 +96,7 @@ class Signup extends Component {
             <input type="text" name='phone' className="form-control" placeholder="Phone" value={this.state.phone} onChange={e => this.handleChange(e)} />
           </div>
 
-
-
-
-
-
-
-
-          {/* <fieldset>
-            <label>Country:</label>
-            <select name="country" form='signup' value={this.state.country} onChange={e => this.handleChange(e)}>
-              {
-                this.allCountries.map((e, i) => <option key={i + e} value={e} >{e}</option>)
-              }
-            </select>
-          </fieldset>
-
-          <fieldset>
-            <label>City:</label>
-            <select name="city" form='signup' value={this.state.city} onChange={e => this.handleChange(e)}>
-              {
-                this.state.country
-                  ?
-                  countries[this.state.country].map((e, i) => <option key={i + e} value={e} >{e}</option>)
-                  :
-                  console.log('err')
-              }
-            </select>
-          </fieldset>
-
-          <fieldset>
-            <label>Username:</label>
-            <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-          </fieldset>
-
-          <fieldset>
-            <label>Password:</label>
-            <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-          </fieldset>
-
-          <fieldset>
-            <label>Phone:</label>
-            <input type="text" name="phone" value={this.state.phone} onChange={e => this.handleChange(e)} />
-          </fieldset> */}
-
-          <input type="submit" className="btn btn-primary" value="Sign up" />
+          <input type="submit" className="btn btn-primary" value="Sign up" onClick={this.setRedirect}/>
         </form>
       </div>
     )

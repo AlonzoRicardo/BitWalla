@@ -5,7 +5,9 @@ const User = require('../models/User');
 const passport = require('passport');
 //BTC generator
 var cmd = require('node-cmd');
-var QRCode = require('qrcode')
+var QRCode = require('qrcode');
+
+
 
 const login = (req, user) => {
   return new Promise((resolve, reject) => {

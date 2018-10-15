@@ -37,7 +37,7 @@ class Navbar extends Component {
                             <Link to={`/profile/${this.state.loggedInUser.username}`}><button className="dropdown-item" type="button">Profile</button></Link>
                             <Link to={`/wallet/info`}><button className="dropdown-item" type="button">Wallet</button></Link>
                             <Link to='/profile/new'><button className="dropdown-item" type="button">Add Product</button></Link>
-                            <button className="dropdown-item" type="button">Inbox</button>
+                            <Link to='/profile/inbox'><button className="dropdown-item" type="button">Inbox</button></Link>
                             <a href='/main' className='dropdown-item' onClick={this.handleLogout}>Logout</a>
                         </div>
                     </div>

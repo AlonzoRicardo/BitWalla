@@ -3,35 +3,34 @@ import Service from './Services'
 import './profile.scss'
 import { Link } from 'react-router-dom';
 
-class Profile extends React.Component {
+class PublicProfile extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            items: []
+            user: null,
+            items: [],
         }
+        this.username = props.match.params.username
         this.service = new Service()
-        
+        console.log(this.username);
     }
 
-    componentDidMount() {
-        this.service.getProfileProducts(this.props.userInSession.username)
+    getProfile () {
+        this.service.getPublicProfile(this.username)
             .then((res) => {
-                this.setState({ items: res.items })
+                this.setState({ user: res })
             })
     }
 
-    handleDelete(e) {
-        let el = e.currentTarget;
-        let id = el.value
-        let toRemove = document.getElementById(id)
-        this.service.deleteProduct(id);
-        toRemove.remove();
-    }
+     componentDidMount() {
+       this.getProfile()
+    }  
+    
 
     render() {
         return (
             <div className='profileContent'>
-                <div>
+                {/* <div>
 
                     <div className="container bootstrap-snippet header-container">
                         <div className="bg-white">
@@ -60,13 +59,13 @@ class Profile extends React.Component {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
 
 
                 <div className='profileItems'>
                     {
-                        this.props.userInSession.items.length === 0 ? <h1>NO ITEMS YET</h1>
+                        this.state.items.length === 0 ? <h1>NO ITEMS YET</h1>
                             :
                             <div className='card items'>
                                 {
@@ -96,4 +95,4 @@ class Profile extends React.Component {
     }
 }
 
-export default Profile;
+export default PublicProfile;

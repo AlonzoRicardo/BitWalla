@@ -19,9 +19,11 @@ class ProductDetail extends React.Component {
             })
     }
 
-    render() {
+    componentDidMount() {
         this.handleItem()
-        
+    }
+
+    render() {
         return (
             <div className='productDetails' >
                 {

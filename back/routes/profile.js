@@ -18,4 +18,13 @@ router.get('/:username', (req, res, next) => {
     
 });
 
+router.get('/public/:username', (req, res, next) => {
+    console.log('entra');
+    console.log(req.params.username, 'AKIIIIIIIIIIIII');
+    
+    let username = req.params.username
+    User.findOne({'username': username})
+    .then((user) => res.json(user))
+});
+
 module.exports = router;

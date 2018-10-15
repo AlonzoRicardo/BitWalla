@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PhotoService from './PhotoService'
+import Services from './Services'
 import './new.scss'
 
 export default class New extends Component {
@@ -12,7 +12,7 @@ export default class New extends Component {
             photo: null,
             error: ''
         }
-        this.service = new PhotoService();
+        this.service = new Services();
     }
 
     handleChange(e) {

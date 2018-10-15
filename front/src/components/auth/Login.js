@@ -1,12 +1,13 @@
 // auth/Signup.js
 import React, { Component } from 'react';
 import AuthService from './AuthService'
+import { Redirect } from 'react-router-dom';
 import './auth.scss'
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '' };
+    this.state = { username: '', password: '', redirect: false, error: true};
     this.service = new AuthService();
   }
 
@@ -41,12 +42,24 @@ class Login extends Component {
     this.setState({ [name]: value });
   }
 
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/main' />
+    }
+  }
+
 
   render() {
     return (<div className='loginForm'>
       <h3>Enter Your Credentials</h3>
-
       <form onSubmit={this.handleFormSubmit} className='signup'>
+      {!this.state.error && this.renderRedirect()}
 
         <div className="form-group">
           <label >Username: </label>
@@ -59,7 +72,7 @@ class Login extends Component {
           <small id="emailHelp" className="form-text text-muted">We'll never share your password with anyone else.</small>
         </div>
 
-        <input type="submit" className="btn btn-primary" value="Login" />
+        <input type="submit" className="btn btn-primary" value="Login" onClick={this.setRedirect}/>
 
       </form>
 

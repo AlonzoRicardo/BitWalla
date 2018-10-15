@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default class PhotoService {
+export default class Services {
   constructor() {
     this.service = axios.create({
       baseURL: 'http://localhost:3000/products',
@@ -35,6 +35,11 @@ export default class PhotoService {
     return this.service2.get(`/${username}`)
     .then(response => response.data)
   }
+
+   getPublicProfile = (username) => {
+    return this.service2.get(`/public/${username}`)
+      .then((response) => response.data)
+  } 
 
   getAllProducts = () => {
     return this.service.get('/main')

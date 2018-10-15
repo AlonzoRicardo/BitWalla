@@ -9,8 +9,9 @@ class MainPage extends React.Component {
             items: [],
             selected: null,
             search: '',
-            btc_usd: 0
+            btc_usd: 0,
         }
+        
     }
 
     updateSearch = event => {
@@ -28,7 +29,7 @@ class MainPage extends React.Component {
         
         return (
             <div className='profileContent'>
-                <div className="input-group mb-3">
+                <div className="input-group">
                     <div className="input-group-prepend">
                         <button className="btn btn-outline-secondary dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
                         <div className="dropdown-menu ">
@@ -56,9 +57,9 @@ class MainPage extends React.Component {
                             filtered.map(e => {
                                 return (
                                     <div className='card text-left' key={e._id}>
-                                        <Link to={`/product/id/` + e._id} ><img className="card-img-top" src={`${e.photo}`} alt="" /></Link>
+                                        <Link to={`/product/id/` + e._id} ><img className="card-img-top prod-img" src={`${e.photo}`} alt="" /></Link>
                                         <div className='card-body'>
-                                            <p className='text-right'>{e.ownerName}</p>
+                                            <Link to={`/public/profile/${e.ownerName}`}> <p className='text-right'>{e.ownerName}</p> </Link> 
                                             <h5 className='card-title'>{e.productName}</h5>
                                             <p>€{e.productPrice}</p>
                                             <p>Ƀ{e.productPrice / this.props.btcPrice}</p>
