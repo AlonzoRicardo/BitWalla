@@ -71,6 +71,10 @@ class App extends Component {
       }, 5000000)
   }
 
+
+  
+
+
   getBitcoinPrice = () => {
     axios.get('https://api.coinmarketcap.com/v2/ticker/1/?convert=EUR')
       .then((response) => this.setState({ btc_usd: Math.round(response.data.data.quotes.EUR.price) }))

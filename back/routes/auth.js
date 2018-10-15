@@ -4,8 +4,9 @@ const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const passport = require('passport');
 //BTC generator
-var cmd = require('node-cmd');
-var QRCode = require('qrcode');
+//var cmd = require('node-cmd');
+const QRCode = require('qrcode');
+const getKeys = require('../src/btc-wallet-generator.js');
 
 
 
@@ -63,18 +64,14 @@ router.post('/signup', (req, res, next) => {
   User.findOne({ username })
     .then(foundUser => {
       if (foundUser) throw new Error('Username already exists');
-
-
       const salt = bcrypt.genSaltSync(10);
       const hashPass = bcrypt.hashSync(password, salt);
 
 
-      cmd.get(
-        'bitaddress singlewallet',
-        function (err, data, stderr) {
-          let arr = data.split('\n')
-          publicKey = arr[0].split(' ')[2]
-          privateKey = arr[1].split(' ')[6]
+      let keys = getKeys();
+      publicKey = keys.public
+      privateKey = keys.private
+
 
           Promise.all([
             getPub(publicKey),
@@ -104,8 +101,8 @@ router.post('/signup', (req, res, next) => {
                 .then(user => res.json({ status: 'signup & login successfully', user })) // Answer JSON
                 .catch(e => next(e));
             })
-        }
-      )
+        
+          
     })
 });
 
