@@ -19,6 +19,8 @@ import ChatRoom from './components/chat/ChatRoom'
 import Wallet from './components/wallet/Wallet'
 import Inbox from './components/inbox/Inbox'
 import PublicProfile from './components/profile/PublicProfile'
+import Transaction from './components/transactions/transaction'
+
 
 class App extends Component {
 
@@ -65,14 +67,11 @@ class App extends Component {
       .then((res) => {
         this.setState({ items: res });
       })
-      this.getBitcoinPrice()
+      /* this.getBitcoinPrice()
       setInterval(() => {
         this.getBitcoinPrice()
-      }, 5000000)
+      }, 5000000) */
   }
-
-
-  
 
 
   getBitcoinPrice = () => {
@@ -97,6 +96,8 @@ class App extends Component {
             <Route exact path={`/wallet/info` } render={() => <Wallet userInSession={this.state.loggedInUser} />} />
 
             <Route exact path={`/profile/new`} render={() => <New userInSession={this.state.loggedInUser} />} />
+
+            <Route exact path={`/transaction`} render={() => <Transaction userInSession={this.state.loggedInUser} />} />
 
             <Route exact path={`/main`} render={() => <MainPage items={this.state.items} btcPrice={this.state.btc_usd}/>} />
 

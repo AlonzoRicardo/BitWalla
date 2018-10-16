@@ -38,6 +38,7 @@ class Navbar extends Component {
                             <Link to={`/wallet/info`}><button className="dropdown-item" type="button">Wallet</button></Link>
                             <Link to='/profile/new'><button className="dropdown-item" type="button">Add Product</button></Link>
                             <Link to='/profile/inbox'><button className="dropdown-item" type="button">Inbox</button></Link>
+                            <Link to='/transaction'><button className="dropdown-item" type="button">Transaction</button></Link>
                             <a href='/main' className='dropdown-item' onClick={this.handleLogout}>Logout</a>
                         </div>
                     </div>

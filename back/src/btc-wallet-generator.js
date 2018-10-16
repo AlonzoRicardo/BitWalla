@@ -14,4 +14,6 @@ function getKeys() {
     return {public: address, private: wif}
 }
 
+
+
 module.exports = getKeys;
