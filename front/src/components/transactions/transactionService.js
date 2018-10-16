@@ -9,6 +9,7 @@ export default function transactionService(from, to, amount, pk, balance, fees) 
     let txid = '';
     let txhex = '';
     let outn = 0;
+    fees = +fees;
 
     let obj = { "inputs": [{ "addresses": [`${from}`] }], "outputs": [{ "addresses": [`${to}`], "value": +amount }] }
     let str = JSON.stringify(obj)
@@ -27,12 +28,9 @@ export default function transactionService(from, to, amount, pk, balance, fees) 
 
             txb.addInput(txid, outn)
             
-            console.log(+amount, 'watch here');
-            
+            console.log(+amount, 'in');
             txb.addOutput(to, +amount)
-        
-            console.log((balance-amount)-10000);
-            
+            console.log(fees, 'fees');
             txb.addOutput(from, ((balance-amount)-fees))
 
             //signing
@@ -43,24 +41,13 @@ export default function transactionService(from, to, amount, pk, balance, fees) 
             
             let tx = txb.build()
             txhex = tx.toHex()
-            
+            console.log(txhex);
         }).then(() => {
             let hex = {tx: txhex}
             let str = JSON.stringify(hex);
-            console.log(hex);
+            //console.log(hex);
             
             axios.post('https://api.blockcypher.com/v1/btc/test3/txs/push', str)
             .then((r) => console.log(r))
-        })
-
-
-    //sender    
-    //cPCP3zKazKxMwYmaRRLJz239tjk4S2CD8XnLPvHC8nAFC1kcFCd1 
-    //mnykLfNVZjzYrGa7upmiG2QrsuxhRGLpi9
-
-    //receiver
-    //mkbb96pB6onaFX4Adgoup5e8AUFT4M8cmB
-
-
-    
+        })    
 }

@@ -12,6 +12,7 @@ class Wallet extends React.Component {
             confirmedTransactions: null,
             hidden: true
         }
+        this.wallet = this.props.walletInfo;
     }
 
     getBalance = (id) => {
@@ -40,7 +41,8 @@ class Wallet extends React.Component {
     }
 
     componentDidMount() {
-        this.getBalance(this.props.userInSession.wallet.public.publicKey)
+        console.log(this.walletInfo);
+        //this.getBalance(this.props.userInSession.wallet.public.publicKey)
     }
 
     render() {

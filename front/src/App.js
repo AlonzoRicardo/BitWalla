@@ -63,15 +63,21 @@ class App extends Component {
   }
 
   componentDidMount() {
+
     this.photoService.getAllProducts()
-      .then((res) => {
-        this.setState({ items: res });
+    .then((res) => {
+      this.setState({ items: res });
+      
       })
       /* this.getBitcoinPrice()
       setInterval(() => {
         this.getBitcoinPrice()
       }, 5000000) */
+    
   }
+
+
+ 
 
 
   getBitcoinPrice = () => {
