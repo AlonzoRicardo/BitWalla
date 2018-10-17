@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './App.scss';
-import { Switch, Route} from 'react-router-dom';
+import { Switch, Route, Redirect} from 'react-router-dom';
 // import ProjectList from './components/projects/ProjectList';
 import Navbar from './components/navbar/Navbar';
 // import ProjectDetails from './components/projects/ProjectDetails';
@@ -26,7 +26,7 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { loggedInUser: null, items: null, detail: null, btc_usd: null };
+    this.state = { loggedInUser: null, items: null, detail: null, btc_usd: null, redirect: false };
     this.service = new AuthService();
     this.photoService = new PhotoService();
     this.DetailsService = new DetailsService();
@@ -63,22 +63,29 @@ class App extends Component {
   }
 
   componentDidMount() {
-
     this.photoService.getAllProducts()
     .then((res) => {
       this.setState({ items: res });
-      
       })
-      /* this.getBitcoinPrice()
+       this.getBitcoinPrice()
       setInterval(() => {
         this.getBitcoinPrice()
-      }, 5000000) */
-    
+      }, 5000000) 
+      
+      this.setRedirect()
   }
 
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
 
- 
-
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/main' />
+    }
+  }
 
   getBitcoinPrice = () => {
     axios.get('https://api.coinmarketcap.com/v2/ticker/1/?convert=EUR')
@@ -91,8 +98,11 @@ class App extends Component {
     this.fetchUser()
     if (this.state.loggedInUser) {
       return (
+
         <div className="App">
+        {this.state.redirect && this.renderRedirect()}
           <Navbar userInSession={this.state.loggedInUser} btcPrice={this.state.btc_usd} logout={this.logout} />
+          
           <Switch>
 
             <Route path={`/public/profile/:username`} component={PublicProfile} />
@@ -114,7 +124,7 @@ class App extends Component {
                 userInSession={this.state.loggedInUser}
               />} />
 
-            <Route exact path={`/chat`} render={() => <ChatRoom userInSession={this.state.loggedInUser} />} />
+            <Route exact path={`/private/chat/:id`} render={(props) => <ChatRoom userInSession={this.state.loggedInUser} msgTo={props}/>} />
           </Switch>
 
         </div>

@@ -29,7 +29,7 @@ class Transaction extends Component {
   componentDidMount() {
     this.setState({ from: this.props.userInSession.wallet.public.publicKey })
     //this.getFoucet()
-    this.getBalance(this.props.userInSession.wallet.public.publicKey);
+    //this.getBalance(this.props.userInSession.wallet.public.publicKey);
   }
 
   getBalance = (id) => {

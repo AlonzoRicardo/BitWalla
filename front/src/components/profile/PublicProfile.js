@@ -68,7 +68,8 @@ class PublicProfile extends React.Component {
                                                 <span className="fa fa-star" id="star4" onClick={() => this.handleRating(this, 4)}></span>
                                                 <span className="fa fa-star" id="star5" onClick={() => this.handleRating(this, 5)}></span>
                                             </div>
-                                            <Link to='/main'>Send Message</Link>
+
+                                            <Link to={'/private/chat/'+this.state.user.username}>Send Message</Link>
 
                                         </div>
                                     </div>
