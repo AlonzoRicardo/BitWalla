@@ -3,7 +3,7 @@ import axios from 'axios';
 export default class DetailsService {
   constructor() {
     this.service = axios.create({
-      baseURL: 'http://localhost:3000/products',
+      baseURL: `${process.env.REACT_APP_API_URL}/products`,
       withCredentials: true
     });
   }

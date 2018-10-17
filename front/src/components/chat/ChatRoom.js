@@ -15,7 +15,7 @@ export default class ChatRoom extends React.Component {
 
 
     componentDidMount() {
-        this.socket = io('localhost:3000/')
+        this.socket = io(`${process.env.REACT_APP_API_URL}/`)
         this.socket.on(`message_user_${this.state.from}`, (msg) => {
             this.receiveMessage(msg.msg, msg.from);
             

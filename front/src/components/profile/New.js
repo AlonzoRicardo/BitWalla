@@ -77,18 +77,6 @@ export default class New extends Component {
                         <button type="submit"  onClick={this.handleSubmit.bind(this)} className="btn btn-primary a" style={{float: 'left'}}>Submit</button>
                     </div>
 
-
-
-                    {/* <p style={{ color: "red" }}>{error}</p>
-                        <label>productName</label>
-                        <input type="text" name='productName' placeholder='Product Name' value={productName} onChange={(e) => this.setState({ productName: e.target.value })} />
-                        <label>productDescription</label>
-                        <input type="text" name='productDescription' placeholder='Product Description' value={productDescription} onChange={(e) => this.setState({ productDescription: e.target.value })} />
-                        <label>productPrice</label>
-                        <input type="text" name='productPrice' placeholder='Product Price' value={productPrice} onChange={(e) => this.setState({ productPrice: e.target.value })} />
-                        <label>Photo</label>
-                        <input type="file" name='photo' placeholder='Product Photo' onChange={(e) => this.handleChange(e)} />
-                        <button onClick={this.handleSubmit.bind(this)}>Submit</button>  */}
                 </form>
             </div>
         )
