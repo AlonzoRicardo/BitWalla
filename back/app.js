@@ -16,7 +16,7 @@ const cors = require('cors');
 const { DBURL } = process.env;
 mongoose.Promise = Promise;
 mongoose
-  .connect(process.env.DBURL, { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => {
     console.log(`Connected to Mongo on ${DBURL}`)
   }).catch(err => {
@@ -94,13 +94,14 @@ app.use((req, res, next) => {
 const authRouter = require('./routes/auth');
 const productsRouter = require('./routes/products');
 const profileRouter = require('./routes/profile')
-//const genericCrud = require('./routes/genericCRUD');
 app.use('/api/auth', authRouter);
 app.use('/products', productsRouter)
 app.use('/profile', profileRouter)
-//app.use('/api/news', genericCrud(require('./models/News')));
-//app.use('/api/user', genericCrud(require('./models/User')));
 
+app.use((req, res, next) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 
 module.exports = app;
