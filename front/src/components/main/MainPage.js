@@ -33,15 +33,15 @@ class MainPage extends React.Component {
                     <div className="input-group-prepend">
                         <button className="btn btn-outline-secondary dropdown-toggle " type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</button>
                         <div className="dropdown-menu ">
-                            <p className="dropdown-item" href="#">Chemicals</p>
+                            <p className="dropdown-item" href="#">Electronics</p>
                             <div role="separator" className="dropdown-divider"></div>
-                            <p className="dropdown-item" href="#">Drugs</p>
+                            <p className="dropdown-item" href="#">Furniture</p>
                             <div role="separator" className="dropdown-divider"></div>
-                            <p className="dropdown-item" href="#">Weapons</p>
+                            <p className="dropdown-item" href="#">Clothing</p>
                             <div role="separator" className="dropdown-divider"></div>
-                            <p className="dropdown-item" href="#">Malicious Software</p>
+                            <p className="dropdown-item" href="#">Art</p>
                             <div role="separator" className="dropdown-divider"></div>
-                            <p className="dropdown-item" href="#">Services</p>
+                            <p className="dropdown-item" href="#">Home</p>
                             
                         </div>
                     </div>
@@ -56,15 +56,14 @@ class MainPage extends React.Component {
                             this.props.items &&
                             filtered.map(e => {
                                 return (
-                                    <div className='card text-left' key={e._id}>
-                                        <Link to={`/product/id/` + e._id} ><img className="card-img-top prod-img" src={`${e.photo}`} alt="" /></Link>
+                                    <div className='card text-left mainProductsCard' key={e._id}>
+                                        <Link to={`/product/id/` + e._id} ><img className="card-img-top prod-img frame" src={`${e.photo}`} alt="" /></Link>
                                         <div className='card-body'>
                                             <Link to={`/public/profile/${e.ownerName}`}> <p className='text-right'>{e.ownerName}</p> </Link> 
                                             <h5 className='card-title'>{e.productName}</h5>
-                                            <p>€{e.productPrice}</p>
-                                            <p>Ƀ{e.productPrice / this.props.btcPrice}</p>
+                                            <p>€uro: {e.productPrice}</p>
+                                            <p>Ƀitcoin: {e.productPrice / this.props.btcPrice}</p>
                                         </div>
-                                        <hr />
                                     </div>
                                 )
                             })

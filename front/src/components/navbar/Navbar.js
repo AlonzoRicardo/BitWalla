@@ -23,7 +23,7 @@ class Navbar extends Component {
 
                 <nav className="navbar navbar-dark bg-dark">
                     <h2 className='brand'>
-                        <Link to='/main'>
+                        <Link style={{ textDecoration: 'none' }} to='/main'>
                             BitWalla
                         </Link>
                     <br/>

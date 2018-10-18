@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import './App.scss';
 import { Switch, Route, Redirect} from 'react-router-dom';
-// import ProjectList from './components/projects/ProjectList';
 import Navbar from './components/navbar/Navbar';
-// import ProjectDetails from './components/projects/ProjectDetails';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import AuthService from './components/auth/AuthService';
@@ -14,10 +12,8 @@ import PhotoService from './components/profile/Services'
 import MainPage from './components/main/MainPage'
 import ProductDetail from './components/main/ProductDetail'
 import DetailsService from './components/main/DetailsService'
-
 import ChatRoom from './components/chat/ChatRoom'
 import Wallet from './components/wallet/Wallet'
-import Inbox from './components/inbox/Inbox'
 import PublicProfile from './components/profile/PublicProfile'
 import Transaction from './components/transactions/transaction'
 
@@ -106,8 +102,6 @@ class App extends Component {
           <Switch>
 
             <Route path={`/public/profile/:username`} component={PublicProfile} />
-
-            <Route exact path={`/profile/inbox`} render={() => <Inbox userInSession={this.state.loggedInUser}/>} />
             
             <Route exact path={`/wallet/info` } render={() => <Wallet userInSession={this.state.loggedInUser} />} />
 
@@ -131,8 +125,8 @@ class App extends Component {
       );
     } else {
       return (
-
         <div className="App">
+        {this.state.redirect && this.renderRedirect()}
           <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           <header className="App-header">
             <Switch>

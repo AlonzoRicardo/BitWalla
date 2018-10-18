@@ -32,7 +32,7 @@ class ProductDetail extends React.Component {
                         <div className='card-body'>
                             
                             <img className="card-img-top" src={`${this.state.item.photo}`} alt="" />
-                            <p className='text-right'><Link to={`/main`}> Contact {this.state.item.ownerName}</Link></p>
+                            <p className='text-right'><Link to={`/public/profile/${this.state.item.ownerName}`}> Contact {this.state.item.ownerName}</Link></p>
                             <h5 className='card-title'>{this.state.item.productName}</h5>
                             <p className='card-text'>{this.state.item.productDescription}</p>
                             <p>{this.state.item.productPrice}</p>

@@ -23,7 +23,7 @@ class PublicProfile extends React.Component {
     }
 
     handleRating(ths, sno) {
-        this.setState({rating: sno})
+        this.setState({ rating: sno })
         for (var k = 1; k <= 5; k++) {
             let cur = document.getElementById("star" + k)
             cur.className = "fa fa-star"
@@ -54,7 +54,7 @@ class PublicProfile extends React.Component {
                                 <div className="container py-5">
                                     <div className="media col-md-10 col-lg-8 col-xl-7 p-0 my-4 mx-auto">
                                         <img src="https://image.flaticon.com/icons/png/512/559/559378.png" alt='' className="d-block ui-w-100 rounded-circle" />
-                                        
+
                                         <div className="media-body ml-5">
                                             <h4 className="font-weight-bold mb-4">{this.state.user.username}</h4>
                                             <div className="text-muted mb-4">
@@ -69,11 +69,11 @@ class PublicProfile extends React.Component {
                                                 <span className="fa fa-star" id="star5" onClick={() => this.handleRating(this, 5)}></span>
                                             </div>
 
-                                            <Link to={'/private/chat/'+this.state.user.username}>Send Message</Link>
+                                            <Link to={'/private/chat/' + this.state.user.username}>Send Message</Link>
 
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <hr className="m-0" />
                                 <ul className="nav nav-tabs tabs-alt justify-content-center">

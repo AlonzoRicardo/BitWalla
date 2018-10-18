@@ -19,8 +19,6 @@ export default class Services {
     formData.append("productName", productName)
     formData.append("productDescription", productDescription)
     formData.append("productPrice", productPrice)
-
-    console.log('DEBUG formData', formData.get("photo"));
     
     return this.service
       .post('new', formData, {

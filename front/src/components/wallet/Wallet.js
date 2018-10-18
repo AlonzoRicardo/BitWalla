@@ -40,18 +40,15 @@ class Wallet extends React.Component {
         this.setState({ hidden: false })
     }
 
-    componentDidMount() {
-        console.log(this.walletInfo);
-        //this.getBalance(this.props.userInSession.wallet.public.publicKey)
-    }
-
     render() {
         return (
             <div className='wallet'>
+                <button onClick={() => this.getBalance(this.props.userInSession.wallet.public.publicKey)} className='btn'>Request Balance</button>
+                <hr/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                 <div className='walletBalance'>
                     <p>Balance: {this.state.balance}</p>
-                    <p>Pending transactions: {this.state.pending}</p>
+                    <p>Pending: {this.state.pending}</p>
                 </div>
                 <div className='walletBalance'>
                     <p>Unconfirmed: {this.state.unconfirmedBalance}</p>
