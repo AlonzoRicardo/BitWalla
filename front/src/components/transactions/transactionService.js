@@ -5,7 +5,6 @@ const axios = require('axios')
 
 export default function transactionService(from, to, amount, pk, balance, fees) {
 
-
     let txid = '';
     let txhex = '';
     let outn = 0;

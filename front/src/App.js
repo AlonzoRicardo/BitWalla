@@ -67,7 +67,6 @@ class App extends Component {
     setInterval(() => {
       this.getBitcoinPrice()
     }, 5000000)
-
     this.setRedirect()
   }
 

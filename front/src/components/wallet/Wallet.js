@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios'
-
+import './wallet.scss'
 
 class Wallet extends React.Component {
     constructor(props) {
@@ -41,7 +41,9 @@ class Wallet extends React.Component {
     render() {
         return (
             <div className='wallet'>
-                <button onClick={() => this.getBalance(this.props.userInSession.wallet.public.publicKey)} className='btn'>Request Balance</button>
+                <button onClick={() => this.getBalance(this.props.userInSession.wallet.public.publicKey)} className='btn getFunds'>Request Balance</button>
+                <br/>
+                <a href="http://bitcoinfaucet.uo1.net/send.php" className='getFunds'>Get funds from a Test Net Foucet</a>
                 <hr/>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                 <div className='walletBalance'>

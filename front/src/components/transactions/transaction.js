@@ -56,7 +56,7 @@ class Transaction extends Component {
 
 render() {
   let { balance, from, to, amount, fees, blockInfo } = this.state
-  return (<div className='loginForm'>
+  return (<div className='transactionForm'>
     <h3>Build your transaction</h3>
     <form className='signup'>
       {/* !this.state.error && this.renderRedirect() */}

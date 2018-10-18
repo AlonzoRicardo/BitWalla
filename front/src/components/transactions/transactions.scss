@@ -6,3 +6,20 @@
 .requestBalance:focus {
     color: beige;
 }
+
+.transactionForm {
+    padding: 20px;
+    background: rgb(14, 17, 21); ;
+    height: 100vh;
+}
+
+.transactionForm input{
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: 1px solid rgba(173, 177, 255, 0.2);
+}
+
+.transactionForm input:focus{
+    color: white;
+    background: rgba(54, 59, 66, 0.92) ;
+}

@@ -40,6 +40,7 @@ class Navbar extends Component {
                             <Link to='/private/chat/:id'><button className="dropdown-item" type="button">Inbox</button></Link>
                             <Link to='/transaction'><button className="dropdown-item" type="button">Transaction</button></Link>
                             <a href='/main' className='dropdown-item' onClick={this.handleLogout}>Logout</a>
+                        <img width='50' style={{float: 'right'}} src="https://static.cryptorival.com/imgs/coins/LSK.svg" alt=""/>
                         </div>
                     </div>
 
