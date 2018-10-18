@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './App.scss';
-import { Switch, Route, Redirect} from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
@@ -60,15 +60,15 @@ class App extends Component {
 
   componentDidMount() {
     this.photoService.getAllProducts()
-    .then((res) => {
-      this.setState({ items: res });
+      .then((res) => {
+        this.setState({ items: res });
       })
-       this.getBitcoinPrice()
-      setInterval(() => {
-        this.getBitcoinPrice()
-      }, 5000000) 
-      
-      this.setRedirect()
+    this.getBitcoinPrice()
+    setInterval(() => {
+      this.getBitcoinPrice()
+    }, 5000000)
+
+    this.setRedirect()
   }
 
   setRedirect = () => {
@@ -86,7 +86,7 @@ class App extends Component {
   getBitcoinPrice = () => {
     axios.get('https://api.coinmarketcap.com/v2/ticker/1/?convert=EUR')
       .then((response) => this.setState({ btc_usd: Math.round(response.data.data.quotes.EUR.price) }))
-      .then(() => {console.log(this.state.btc_usd)})
+      .then(() => { console.log(this.state.btc_usd) })
   }
 
 
@@ -96,20 +96,21 @@ class App extends Component {
       return (
 
         <div className="App">
-        {this.state.redirect && this.renderRedirect()}
+          {/* this.state.redirect && this.renderRedirect() */}
           <Navbar userInSession={this.state.loggedInUser} btcPrice={this.state.btc_usd} logout={this.logout} />
-          
+
           <Switch>
+            <Route exact path='/' render={() => <MainPage items={this.state.items} btcPrice={this.state.btc_usd} />} />
 
             <Route path={`/public/profile/:username`} component={PublicProfile} />
-            
-            <Route exact path={`/wallet/info` } render={() => <Wallet userInSession={this.state.loggedInUser} />} />
+
+            <Route exact path={`/wallet/info`} render={() => <Wallet userInSession={this.state.loggedInUser} />} />
 
             <Route exact path={`/profile/new`} render={() => <New userInSession={this.state.loggedInUser} />} />
 
             <Route exact path={`/transaction`} render={() => <Transaction userInSession={this.state.loggedInUser} />} />
 
-            <Route exact path={`/main`} render={() => <MainPage items={this.state.items} btcPrice={this.state.btc_usd}/>} />
+            <Route exact path={`/main`} render={() => <MainPage items={this.state.items} btcPrice={this.state.btc_usd} />} />
 
             <Route path={'/product/id/:id'} component={ProductDetail} />
 
@@ -118,7 +119,7 @@ class App extends Component {
                 userInSession={this.state.loggedInUser}
               />} />
 
-            <Route exact path={`/private/chat/:id`} render={(props) => <ChatRoom userInSession={this.state.loggedInUser} msgTo={props}/>} />
+            <Route exact path={`/private/chat/:id`} render={(props) => <ChatRoom userInSession={this.state.loggedInUser} msgTo={props} />} />
           </Switch>
 
         </div>
@@ -126,14 +127,15 @@ class App extends Component {
     } else {
       return (
         <div className="App">
-        {this.state.redirect && this.renderRedirect()}
+          {/* this.state.redirect && this.renderRedirect() */}
           <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           <header className="App-header">
             <Switch>
+              <Route exact path='/' render={() => <MainPage items={this.state.items} btcPrice={this.state.btc_usd} />} />
               <Route exact path='/main' render={() => <MainPage items={this.state.items} />} />
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
               <Route path={'/product/id/:id'} component={ProductDetail} />
-              <Route exact path='/login' render={(props) => <Login getUser={this.getTheUser} getProps={props}/>} />
+              <Route exact path='/login' render={(props) => <Login getUser={this.getTheUser} getProps={props} />} />
             </Switch>
           </header>
         </div>

@@ -18,7 +18,6 @@ class Wallet extends React.Component {
     getBalance = (id) => {
         axios.get(`https://api.blockcypher.com/v1/btc/test3/addrs/${id}`)
             .then((response) => {
-                console.log(response.data);
                 this.setState({
                     balance: response.data.balance,
                     pending: response.data.unconfirmed_n_tx,
@@ -26,7 +25,6 @@ class Wallet extends React.Component {
                     confirmedTransactions: response.data.n_tx
                 })
             })
-            .then(() => { console.log(this.state.balance) })
     }
 
     copyToClipboard = (id) => {
